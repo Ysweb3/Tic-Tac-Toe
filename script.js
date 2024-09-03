@@ -39,8 +39,8 @@ function WinningCombos(array){
     else if((array[0][2] == "X" && array[1][1] == "X" && array[2][0] == "X") || (array[0][2] == "O" && array[1][1] == "O" && array[2][0] == "O")){
         return true;
     }
-
 }
+
 
   
 const CreatePlayer = function(name,score,mark) {
@@ -64,34 +64,43 @@ function InitializePlayers(){
 function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
     let arrayIndex1 = null;
     let arrayIndex2 = null;
+    let count = 0;
     console.log("Welcome")
     console.log(GameBoard);
     runGame = prompt("Please enter true to start the game.");
-    while (runGame == "true" && win != true){
+    while (runGame == "true" && win != true && count <9){
 
         if (playerTurn == 1){
-            arrayIndex1 = prompt("Enter the first array index");
-            arrayIndex2 = prompt("Enter the secound array index");
+            arrayIndex1 = prompt("Enter the first array index O");
+            arrayIndex2 = prompt("Enter the secound array index O");
             GameBoard[arrayIndex1][arrayIndex2] = p1mark;
 
             playerTurn = 2;
         }
         else if (playerTurn == 2){
-            arrayIndex1 = prompt("Enter the first array index");
-            arrayIndex2 = prompt("Enter the secound array index");
+            arrayIndex1 = prompt("Enter the first array index X");
+            arrayIndex2 = prompt("Enter the secound array index X");
             GameBoard[arrayIndex1][arrayIndex2] = p2mark;
             
             playerTurn = 1;
         }
         win = WinningCombos(GameBoard);
+        count++;
+        console.log(count);
         
     }
-    if (playerTurn != 1){
-        console.log("O WINS!!!")
+    if (count <9) {
+        if (playerTurn != 1){
+            console.log("O WINS!!!");
+        }
+        else {
+            console.log("X WINS!!");
+        }
     }
-    else {
-        console.log("X WINS!!")
+    else{
+        console.log("TIE!")
     }
+    
 }
 
 function StartGame(){
