@@ -65,6 +65,7 @@ function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
     let arrayIndex1 = null;
     let arrayIndex2 = null;
     let count = 0;
+    let indexFilled = false
     console.log("Welcome")
     console.log(GameBoard);
     runGame = prompt("Please enter true to start the game.");
@@ -73,20 +74,33 @@ function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
         if (playerTurn == 1){
             arrayIndex1 = prompt("Enter the first array index O");
             arrayIndex2 = prompt("Enter the secound array index O");
-            GameBoard[arrayIndex1][arrayIndex2] = p1mark;
-
-            playerTurn = 2;
+            if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
+                indexFilled = true;
+            }
+            else{
+                GameBoard[arrayIndex1][arrayIndex2] = p1mark;
+                playerTurn = 2;
+                indexFilled = false
+            }
+            
         }
         else if (playerTurn == 2){
             arrayIndex1 = prompt("Enter the first array index X");
             arrayIndex2 = prompt("Enter the secound array index X");
-            GameBoard[arrayIndex1][arrayIndex2] = p2mark;
-            
-            playerTurn = 1;
+            if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
+                indexFilled = true;
+            }
+            else{
+                GameBoard[arrayIndex1][arrayIndex2] = p2mark;
+                playerTurn = 1;
+                indexFilled = false
+            }
         }
-        win = WinningCombos(GameBoard);
-        count++;
-        console.log(count);
+        if (indexFilled == false){
+            win = WinningCombos(GameBoard);
+            count++;
+            console.log(count);
+        }
         
     }
     if (count <9) {
