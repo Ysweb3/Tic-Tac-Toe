@@ -6,11 +6,10 @@ let defaultBoard = [['-','-','-'],
 function CreateBoard(newGameBoard) {
     return [...newGameBoard];
 }
-
 function WinningCombos(array){
     console.log(" "+array[0][0]+" "+array[0][1]+" "+array[0][2],'\n',
-                array[1][0]+" "+array[1][1]+" "+array[1][2],'\n',
-                array[2][0]+" "+array[2][1]+" "+array[2][2],'\n',
+                    array[1][0]+" "+array[1][1]+" "+array[1][2],'\n',
+                    array[2][0]+" "+array[2][1]+" "+array[2][2],'\n',
     )
     //Horizontal winning combos
     if((array[0][0] == "X" && array[0][1] == "X" && array[0][2] == "X") || (array[0][0] == "O" && array[0][1] == "O" && array[0][2] == "O")){
@@ -40,15 +39,11 @@ function WinningCombos(array){
         return true;
     }
 }
-
-
-  
 const CreatePlayer = function(name,score,mark) {
     this.name = name,
     this.score = score;
     this.mark = mark;
 }
-
 const player1 = new CreatePlayer;
 const player2 = new CreatePlayer;
 
@@ -70,7 +65,6 @@ function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
     console.log(GameBoard);
     runGame = prompt("Please enter true to start the game.");
     while (runGame == "true" && win != true && count <9){
-
         if (playerTurn == 1){
             arrayIndex1 = prompt("Enter the first array index O");
             arrayIndex2 = prompt("Enter the secound array index O");
@@ -82,7 +76,6 @@ function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
                 playerTurn = 2;
                 indexFilled = false
             }
-            
         }
         else if (playerTurn == 2){
             arrayIndex1 = prompt("Enter the first array index X");
@@ -101,7 +94,6 @@ function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
             count++;
             console.log(count);
         }
-        
     }
     if (count <9) {
         if (playerTurn != 1){
@@ -114,9 +106,7 @@ function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
     else{
         console.log("TIE!")
     }
-    
 }
-
 function StartGame(){
     let win = false;
     let runGame = null;
@@ -127,7 +117,6 @@ function StartGame(){
     let p2mark = player2.mark;
     console.log(GameBoard);
     GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark);
-    
 }
 
-StartGame();
+// StartGame();

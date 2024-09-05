@@ -1,0 +1,50 @@
+@font-face {
+    font-family:"Kanit";
+    src: url(assets/font/Kanit-Regular.ttf);
+}
+
+body {
+    font-family: "Kanit";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+h1{
+    font-size: 40px;
+}
+#game-board-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#game-board{
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px;
+    height: 500px;
+    width: 500px;
+    gap: 0px;
+    margin-left:50px ;
+   
+}
+.board-button{
+    height: 150px;
+    width: 150px;
+    background-color: white;
+    border: none;
+    font-size: 80px;
+}
+.border-left{
+    border-left: 10px solid;
+}
+.border-right{
+    border-right: 10px solid;
+}
+.border-top{
+    border-top: 10px solid;
+}
+.border-bottom{
+    border-bottom: 10px solid;
+}
