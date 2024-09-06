@@ -1,7 +1,24 @@
+const boardInput = document.getElementsByClassName("board-button");
 
-let defaultBoard = [['-','-','-'],
-                    ['-','-','-'],
-                    ['-','-','-']]
+function DisplayBoard(board){
+    let n = 0;
+        for(let j = 0;j <= 2;j++){
+            for(let k = 0;k <=2; k++){
+                n++;
+                console.log(n)
+                console.log("J " +j+" "+"K " + k);
+                const elementId = "board-"+n;
+                const boardElement = document.getElementById(elementId);
+                boardElement.textContent = board[j][k];
+            }
+        }
+    }
+
+
+
+let defaultBoard = [['','',''],
+                    ['','',''],
+                    ['','','']]
 
 function CreateBoard(newGameBoard) {
     return [...newGameBoard];
@@ -120,3 +137,4 @@ function StartGame(){
 }
 
 // StartGame();
+DisplayBoard(defaultBoard);
