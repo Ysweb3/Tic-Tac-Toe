@@ -1,12 +1,13 @@
 const boardInput = document.getElementsByClassName("board-button");
+const gameboard = document.getElementById("game-board")
 
 function DisplayBoard(board){
     let n = 0;
         for(let j = 0;j <= 2;j++){
             for(let k = 0;k <=2; k++){
                 n++;
-                console.log(n)
-                console.log("J " +j+" "+"K " + k);
+                // console.log(n)
+                // console.log("J " +j+" "+"K " + k);
                 const elementId = "board-"+n;
                 const boardElement = document.getElementById(elementId);
                 boardElement.textContent = board[j][k];
@@ -56,6 +57,40 @@ function WinningCombos(array){
         return true;
     }
 }
+function returnArrayIndexOfElement(elementId){
+    console.log(elementId);
+    switch (elementId) {
+        case "board-1":
+            arrayIndex1 = 0;arrayIndex2 = 0;
+            break;
+        case "board-2":
+            arrayIndex1 = 0;arrayIndex2 = 1;
+            break;
+        case "board-3":
+            arrayIndex1 = 0;arrayIndex2 = 2;
+            break;
+        case "board-4":
+            arrayIndex1 = 1;arrayIndex2 = 0;
+            break;    
+        case "board-5":
+            arrayIndex1 = 1;arrayIndex2 = 1;
+            break;
+        case "board-6":
+            arrayIndex1 = 1;arrayIndex2 = 2;
+            break;
+        case "board-7":
+            arrayIndex1 = 2;arrayIndex2 = 0;
+            break;
+        case "board-8":
+            arrayIndex1 = 2;arrayIndex2 = 1;
+            break;
+        case "board-9":
+            arrayIndex1 = 2;arrayIndex2 = 2;
+            break;
+        default:
+            break;
+    }
+}
 const CreatePlayer = function(name,score,mark) {
     this.name = name,
     this.score = score;
@@ -73,46 +108,53 @@ function InitializePlayers(){
     player2.score = 0;
     player2.mark = "X";
 }
-function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
-    let arrayIndex1 = null;
-    let arrayIndex2 = null;
-    let count = 0;
-    let indexFilled = false
-    console.log("Welcome")
-    console.log(GameBoard);
-    runGame = prompt("Please enter true to start the game.");
-    while (runGame == "true" && win != true && count <9){
-        if (playerTurn == 1){
-            arrayIndex1 = prompt("Enter the first array index O");
-            arrayIndex2 = prompt("Enter the secound array index O");
+let playerTurn = 1;
+let win = false;
+let count = 0;
+let indexFilled = false
+let GameBoard = CreateBoard(defaultBoard);
+InitializePlayers();
+let p1mark = player1.mark;
+let p2mark = player2.mark;
+gameboard.addEventListener("click",GameLogic, false);
+
+function GameLogic(e){
+        if (playerTurn == 1 && count <9 && win != true){
+            //O turn
+            returnArrayIndexOfElement(e.target.id);
             if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
                 indexFilled = true;
             }
             else{
+                e.target.textContent = p1mark;
+                // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
                 GameBoard[arrayIndex1][arrayIndex2] = p1mark;
                 playerTurn = 2;
                 indexFilled = false
             }
         }
-        else if (playerTurn == 2){
-            arrayIndex1 = prompt("Enter the first array index X");
-            arrayIndex2 = prompt("Enter the secound array index X");
+        else if (playerTurn == 2 && count <9 && win != true){
+            //X turn
+            returnArrayIndexOfElement(e.target.id);
             if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
                 indexFilled = true;
             }
             else{
+                e.target.textContent = p2mark;
+                // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
                 GameBoard[arrayIndex1][arrayIndex2] = p2mark;
                 playerTurn = 1;
                 indexFilled = false
             }
         }
-        if (indexFilled == false){
+        if (indexFilled == false && count <9){
             win = WinningCombos(GameBoard);
+            // console.log(win)
             count++;
-            console.log(count);
+            // console.log("DAWD"+count);
         }
-    }
-    if (count <9) {
+    
+    if (win == true) {
         if (playerTurn != 1){
             console.log("O WINS!!!");
         }
@@ -120,21 +162,13 @@ function GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark){
             console.log("X WINS!!");
         }
     }
-    else{
+    else if (count == 9 && win != true){
         console.log("TIE!")
     }
 }
-function StartGame(){
-    let win = false;
-    let runGame = null;
-    let playerTurn = 1;
-    let GameBoard = CreateBoard(defaultBoard);
-    InitializePlayers();
-    let p1mark = player1.mark;
-    let p2mark = player2.mark;
-    console.log(GameBoard);
-    GameLogic(win,runGame,playerTurn,GameBoard,p1mark,p2mark);
-}
 
-// StartGame();
+
+
+
+
 DisplayBoard(defaultBoard);
