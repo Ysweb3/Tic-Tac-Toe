@@ -54,3 +54,13 @@ h1{
     font-size: 25px;
     border: 1px solid;  
 }
+#replay-button{
+    height: 50px;
+    width: 150px;
+    background: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+#replay-button:active{
+    transform: scale(0.9);
+}

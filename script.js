@@ -1,8 +1,8 @@
 const boardInput = document.getElementsByClassName("board-button");
-const gameboard = document.getElementById("game-board")
-const p1ScoreDIsplay = document.getElementById("p1-score")
-const p2ScoreDIsplay = document.getElementById("p2-score")
-
+const gameboard = document.getElementById("game-board");
+const p1ScoreDIsplay = document.getElementById("p1-score");
+const p2ScoreDIsplay = document.getElementById("p2-score");
+const replayBtn = document.getElementById("replay-button");
 
 function DisplayBoard(board){
     let n = 0;
@@ -122,66 +122,77 @@ let p1mark = player1.mark;
 let p2mark = player2.mark;
 let p1score = player1.score;
 let p2score = player2.score;
-gameboard.addEventListener("click",GameLogic, false);
-
 function GameLogic(e){
-        if (playerTurn == 1 && count <9 && win != true){
-            //O turn
-            returnArrayIndexOfElement(e.target.id);
-            if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
-                indexFilled = true;
-            }
-            else{
-                e.target.textContent = p1mark;
-                // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
-                GameBoard[arrayIndex1][arrayIndex2] = p1mark;
-                playerTurn = 2;
-                indexFilled = false
-            }
+    if (playerTurn == 1 && count <9 && win != true){
+        //O turn
+        returnArrayIndexOfElement(e.target.id);
+        if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
+            indexFilled = true;
         }
-        else if (playerTurn == 2 && count <9 && win != true){
-            //X turn
-            returnArrayIndexOfElement(e.target.id);
-            if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
-                indexFilled = true;
-            }
-            else{
-                e.target.textContent = p2mark;
-                // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
-                GameBoard[arrayIndex1][arrayIndex2] = p2mark;
-                playerTurn = 1;
-                indexFilled = false
-            }
-        }
-        if (indexFilled == false && count <9){
-            win = WinningCombos(GameBoard);
-            // console.log(win)
-            count++;
-            // console.log("DAWD"+count);
-        }
-    
-    if (win == true) {
-        if (playerTurn == 2 && gameOver == false){
-            console.log("O WINS!!!");
-            p1score++;
-            gameOver = true;
-            p1ScoreDIsplay.textContent = p1score;
-        }
-        else if (playerTurn == 1 && gameOver == false) {
-            console.log("X WINS!!");
-            p2score++;
-            gameOver = true;
-            p2ScoreDIsplay.textContent = p2score;
+        else{
+            e.target.textContent = p1mark;
+            // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
+            GameBoard[arrayIndex1][arrayIndex2] = p1mark;
+            playerTurn = 2;
+            indexFilled = false
         }
     }
-    else if (count == 9 && win != true){
-        console.log("TIE!");
+    else if (playerTurn == 2 && count <9 && win != true){
+        //X turn
+        returnArrayIndexOfElement(e.target.id);
+        if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
+            indexFilled = true;
+        }
+        else{
+            e.target.textContent = p2mark;
+            // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
+            GameBoard[arrayIndex1][arrayIndex2] = p2mark;
+            playerTurn = 1;
+            indexFilled = false
+        }
     }
-    
+    if (indexFilled == false && count <9){
+        win = WinningCombos(GameBoard);
+        // console.log(win)
+        count++;
+        // console.log("DAWD"+count);
+    }
+
+if (win == true) {
+    if (playerTurn == 2 && gameOver == false){
+        console.log("O WINS!!!");
+        p1score++;
+        gameOver = true;
+        p1ScoreDIsplay.textContent = p1score;
+    }
+    else if (playerTurn == 1 && gameOver == false) {
+        console.log("X WINS!!");
+        p2score++;
+        gameOver = true;
+        p2ScoreDIsplay.textContent = p2score;
+    }
+}
+else if (count == 9 && win != true){
+    console.log("TIE!");
+}};
+
+function ReplayGame(){
+    defaultBoard = [['','',''],
+                    ['','',''],
+                    ['','','']]
+    playerTurn = 1;
+    win = false;
+    gameOver = false;
+    count = 0;
+    indexFilled = false
+    GameBoard = CreateBoard(defaultBoard);
+    console.log(defaultBoard)
+    DisplayBoard(defaultBoard);
+
 }
 
+replayBtn.addEventListener("click",ReplayGame, false);
 
-
-
+gameboard.addEventListener("click",GameLogic, false);
 
 DisplayBoard(defaultBoard);
