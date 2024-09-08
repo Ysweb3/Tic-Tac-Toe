@@ -13,7 +13,7 @@ body {
 h1{
     font-size: 40px;
 }
-#game-board-container{
+#game-container{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,4 +47,10 @@ h1{
 }
 .border-bottom{
     border-bottom: 10px solid;
+}
+#player-box{
+    height: 200px;
+    width: 200px;
+    font-size: 25px;
+    border: 1px solid;  
 }

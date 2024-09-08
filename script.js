@@ -1,5 +1,8 @@
 const boardInput = document.getElementsByClassName("board-button");
 const gameboard = document.getElementById("game-board")
+const p1ScoreDIsplay = document.getElementById("p1-score")
+const p2ScoreDIsplay = document.getElementById("p2-score")
+
 
 function DisplayBoard(board){
     let n = 0;
@@ -110,12 +113,15 @@ function InitializePlayers(){
 }
 let playerTurn = 1;
 let win = false;
+let gameOver = false;
 let count = 0;
 let indexFilled = false
 let GameBoard = CreateBoard(defaultBoard);
 InitializePlayers();
 let p1mark = player1.mark;
 let p2mark = player2.mark;
+let p1score = player1.score;
+let p2score = player2.score;
 gameboard.addEventListener("click",GameLogic, false);
 
 function GameLogic(e){
@@ -155,16 +161,23 @@ function GameLogic(e){
         }
     
     if (win == true) {
-        if (playerTurn != 1){
+        if (playerTurn == 2 && gameOver == false){
             console.log("O WINS!!!");
+            p1score++;
+            gameOver = true;
+            p1ScoreDIsplay.textContent = p1score;
         }
-        else {
+        else if (playerTurn == 1 && gameOver == false) {
             console.log("X WINS!!");
+            p2score++;
+            gameOver = true;
+            p2ScoreDIsplay.textContent = p2score;
         }
     }
     else if (count == 9 && win != true){
-        console.log("TIE!")
+        console.log("TIE!");
     }
+    
 }
 
 
