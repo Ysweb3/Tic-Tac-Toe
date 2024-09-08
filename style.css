@@ -54,6 +54,9 @@ h1{
     font-size: 25px;
     border: 1px solid;  
 }
+#button-container{
+    margin: 10px;
+}
 #replay-button{
     height: 50px;
     width: 150px;
@@ -62,5 +65,16 @@ h1{
     font-size: 20px;
 }
 #replay-button:active{
+    transform: scale(0.9);
+}
+#reset-button{
+    margin-left: 20px;
+    height: 50px;
+    width: 150px;
+    background: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+#reset-button:active{
     transform: scale(0.9);
 }

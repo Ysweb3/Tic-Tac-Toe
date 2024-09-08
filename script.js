@@ -3,6 +3,7 @@ const gameboard = document.getElementById("game-board");
 const p1ScoreDIsplay = document.getElementById("p1-score");
 const p2ScoreDIsplay = document.getElementById("p2-score");
 const replayBtn = document.getElementById("replay-button");
+const resetBtn = document.getElementById("reset-button");
 
 function DisplayBoard(board){
     let n = 0;
@@ -190,6 +191,15 @@ function ReplayGame(){
     DisplayBoard(defaultBoard);
 
 }
+function ResetGame(){
+    ReplayGame()
+    p1score = player1.score;
+    p2score = player2.score;
+    p1ScoreDIsplay.textContent = p1score;
+    p2ScoreDIsplay.textContent = p2score;
+}
+
+resetBtn.addEventListener("click",ResetGame, false);
 
 replayBtn.addEventListener("click",ReplayGame, false);
 
