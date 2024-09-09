@@ -4,6 +4,7 @@ const p1ScoreDIsplay = document.getElementById("p1-score");
 const p2ScoreDIsplay = document.getElementById("p2-score");
 const replayBtn = document.getElementById("replay-button");
 const resetBtn = document.getElementById("reset-button");
+const winOverlayLine = document.getElementById("win-overlay-line");
 
 function DisplayBoard(board){
     let n = 0;
@@ -19,8 +20,6 @@ function DisplayBoard(board){
         }
     }
 
-
-
 let defaultBoard = [['','',''],
                     ['','',''],
                     ['','','']]
@@ -35,29 +34,61 @@ function WinningCombos(array){
     )
     //Horizontal winning combos
     if((array[0][0] == "X" && array[0][1] == "X" && array[0][2] == "X") || (array[0][0] == "O" && array[0][1] == "O" && array[0][2] == "O")){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "180deg";
+        winOverlayLine.style.bottom = "510px";
         return true;
     }
     else if((array[1][0] == "X" && array[1][1] == "X" && array[1][2] == "X") || (array[1][0] == "O" && array[1][1] == "O" && array[1][2] == "O")){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "180deg";
+        winOverlayLine.style.bottom = "355px";
         return true;
     }
     else if((array[2][0] == "X" && array[2][1] == "X" && array[2][2] == "X") || (array[2][0] == "O" && array[2][1] == "O" && array[2][2] == "O")){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "180deg";
+        winOverlayLine.style.bottom = "200px";
         return true;
     }
     //vertical winning combos
     else if((array[0][0] == "X" && array[1][0] == "X" && array[2][0] == "X") || (array[0][0] == "O" && array[1][0] == "O" && array[2][0] == "O")){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "90deg";
+        winOverlayLine.style.bottom = "355px";
+        winOverlayLine.style.right = "155px";
         return true;
     }
     else if((array[0][1] == "X" && array[1][1] == "X" && array[2][1] == "X") || (array[0][1] == "O" && array[1][1] == "O" && array[2][1] == "O")){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "90deg";
+        winOverlayLine.style.bottom = "355px";
+        winOverlayLine.style.right = "155px";
         return true;
     }
     else if((array[0][2] == "X" && array[1][2] == "X" && array[2][2] == "X") || (array[0][2] == "O" && array[1][2] == "O" && array[2][2] == "O")){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "90deg";
+        winOverlayLine.style.bottom = "355px";
+        winOverlayLine.style.right = "0px";
+        winOverlayLine.style.left = "0px";
         return true;
     }
     //Diagonal winning combos
     else if((array[0][0] == "X" && array[1][1] == "X" && array[2][2] == "X") || (array[0][0] == "O" && array[1][1] == "O" && array[2][2] == "O") ){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "45deg";
+        winOverlayLine.style.bottom = "355px";
+        winOverlayLine.style.right = "0px";
+        winOverlayLine.style.left = "0px";
         return true;
     }
     else if((array[0][2] == "X" && array[1][1] == "X" && array[2][0] == "X") || (array[0][2] == "O" && array[1][1] == "O" && array[2][0] == "O")){
+        winOverlayLine.classList.remove("hidden");
+        winOverlayLine.style.rotate = "-45deg";
+        winOverlayLine.style.bottom = "355px"
+        winOverlayLine.style.right = "0px";
+        winOverlayLine.style.left = "0px";
         return true;
     }
 }
@@ -116,13 +147,15 @@ let playerTurn = 1;
 let win = false;
 let gameOver = false;
 let count = 0;
-let indexFilled = false
+let indexFilled = false;
+let winCombo = 0;
 let GameBoard = CreateBoard(defaultBoard);
 InitializePlayers();
 let p1mark = player1.mark;
 let p2mark = player2.mark;
 let p1score = player1.score;
 let p2score = player2.score;
+
 function GameLogic(e){
     if (playerTurn == 1 && count <9 && win != true){
         //O turn
@@ -154,9 +187,8 @@ function GameLogic(e){
     }
     if (indexFilled == false && count <9){
         win = WinningCombos(GameBoard);
-        // console.log(win)
         count++;
-        // console.log("DAWD"+count);
+        console.log(winCombo)
     }
 
 if (win == true) {
@@ -189,6 +221,7 @@ function ReplayGame(){
     GameBoard = CreateBoard(defaultBoard);
     console.log(defaultBoard)
     DisplayBoard(defaultBoard);
+    winOverlayLine.classList.add("hidden");
 
 }
 function ResetGame(){

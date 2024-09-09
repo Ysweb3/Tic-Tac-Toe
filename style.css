@@ -36,6 +36,9 @@ h1{
     border: none;
     font-size: 80px;
 }
+.board-button:hover{
+    cursor: pointer;
+}
 .border-left{
     border-left: 10px solid;
 }
@@ -52,7 +55,16 @@ h1{
     height: 200px;
     width: 200px;
     font-size: 25px;
-    border: 1px solid;  
+    border-left: 1px solid;  
+    border-right: 1px solid;  
+}
+#p2-score{
+    margin-top: 0px;
+    font-size: 40px;
+}
+#p1-score{
+    margin-top: 0px;
+    font-size: 40px;
 }
 #button-container{
     margin: 10px;
@@ -77,4 +89,15 @@ h1{
 }
 #reset-button:active{
     transform: scale(0.9);
+}
+.hidden{
+    opacity: 0;
+    z-index: -9;
+}
+#win-overlay-line{
+    height: 20px;
+    width: 450px;
+    background-color: gray;
+    position: relative;
+  
 }
