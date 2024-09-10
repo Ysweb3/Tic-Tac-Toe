@@ -5,6 +5,7 @@ const p2ScoreDIsplay = document.getElementById("p2-score");
 const replayBtn = document.getElementById("replay-button");
 const resetBtn = document.getElementById("reset-button");
 const winOverlayLine = document.getElementById("win-overlay-line");
+const turnDisplay = document.getElementById("turn-display");
 
 function DisplayBoard(board){
     let n = 0;
@@ -159,6 +160,7 @@ let p2score = player2.score;
 function GameLogic(e){
     if (playerTurn == 1 && count <9 && win != true){
         //O turn
+        turnDisplay.textContent = "X's turn";
         returnArrayIndexOfElement(e.target.id);
         if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
             indexFilled = true;
@@ -172,7 +174,8 @@ function GameLogic(e){
         }
     }
     else if (playerTurn == 2 && count <9 && win != true){
-        //X turn
+         //X turn
+        turnDisplay.textContent = "O's turn";
         returnArrayIndexOfElement(e.target.id);
         if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
             indexFilled = true;
@@ -194,12 +197,14 @@ function GameLogic(e){
 if (win == true) {
     if (playerTurn == 2 && gameOver == false){
         console.log("O WINS!!!");
+        turnDisplay.textContent = "O WINS";
         p1score++;
         gameOver = true;
         p1ScoreDIsplay.textContent = p1score;
     }
     else if (playerTurn == 1 && gameOver == false) {
         console.log("X WINS!!");
+        turnDisplay.textContent = "X WINS";
         p2score++;
         gameOver = true;
         p2ScoreDIsplay.textContent = p2score;
@@ -221,6 +226,7 @@ function ReplayGame(){
     GameBoard = CreateBoard(defaultBoard);
     console.log(defaultBoard)
     DisplayBoard(defaultBoard);
+    turnDisplay.textContent = "O's turn";
     winOverlayLine.classList.add("hidden");
 
 }

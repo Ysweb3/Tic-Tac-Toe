@@ -101,3 +101,7 @@ h1{
     position: relative;
   
 }
+#turn-display{
+    font-size: 35px;
+    margin-top: 0px;
+}
