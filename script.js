@@ -206,6 +206,7 @@ if (win == true) {
 }
 else if (count == 9 && win != true){
     console.log("TIE!");
+    turnDisplay.textContent = "TIE";
 }};
 
 function ReplayGame(){
