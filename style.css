@@ -2,16 +2,25 @@
     font-family:"Kanit";
     src: url(assets/font/Kanit-Regular.ttf);
 }
+@font-face {
+    font-family:"Digi";
+    src: url(assets/font/DS-DIGI.TTF);
+}
+
 
 body {
-    font-family: "Kanit";
+    font-family: "Kanit","sans-serif";
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: #F3F7EC;
+    margin: 0px;
 }
 h1{
-    font-size: 40px;
+    font-size: 50px;
+    margin-top: 0px;
+    text-shadow: 3px 2px 1.5px #33333371;
 }
 #game-container{
     display: flex;
@@ -27,44 +36,53 @@ h1{
     width: 500px;
     gap: 0px;
     margin-left:50px ;
-   
 }
 .board-button{
     height: 150px;
     width: 150px;
-    background-color: white;
+    background-color: #F3F7EC;
     border: none;
     font-size: 80px;
+    text-shadow: 3px 2px 1.5px #33333371;
 }
 .board-button:hover{
     cursor: pointer;
 }
 .border-left{
-    border-left: 10px solid;
+    border-left: 10px solid #0b84949d;
 }
 .border-right{
-    border-right: 10px solid;
+    border-right: 10px solid #0B8494;
 }
 .border-top{
-    border-top: 10px solid;
+    border-top: 10px solid #0b84949d;
 }
 .border-bottom{
-    border-bottom: 10px solid;
+    border-bottom: 10px solid #0B8494;
 }
 #player-box{
     height: 200px;
     width: 200px;
-    font-size: 25px;
-    border-left: 1px solid;  
-    border-right: 1px solid;  
+    font-size: 30px;
+    background-color: #343131;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.5);
+}
+.Player-name{
+    margin-bottom: 10px;
 }
 #p2-score{
+    font-family: "Digi","sans-serif";
+    color: #EEDF7A;
     margin-top: 0px;
-    font-size: 40px;
+    font-size: 85px;
 }
 #p1-score{
+    font-family: "Digi","sans-serif";
+    color: #EEDF7A;
     margin-top: 0px;
-    font-size: 40px;
+    font-size: 85px;
 }
 #button-container{
     margin: 10px;
@@ -73,8 +91,13 @@ h1{
     height: 50px;
     width: 150px;
     background: none;
-    border-radius: 5px;
-    font-size: 20px;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: #005C78;
+    color: white;
+    border: none;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.5);
 }
 #replay-button:active{
     transform: scale(0.9);
@@ -84,8 +107,13 @@ h1{
     height: 50px;
     width: 150px;
     background: none;
-    border-radius: 5px;
-    font-size: 20px;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: #A04747;
+    color: white;
+    border: none;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.5);
 }
 #reset-button:active{
     transform: scale(0.9);
@@ -97,13 +125,45 @@ h1{
 #win-overlay-line{
     height: 20px;
     width: 450px;
-    background-color: gray;
+    background-color: #E88D67;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.5);
     position: relative;
+    border-radius: 10px;
     bottom: 0px;
     right: 0px;
     left: 0px; 
 }
 #turn-display{
-    font-size: 35px;
+    font-size: 40px;
     margin-top: 0px;
+    background-color: #0b84949d;
+    color: white;
+    text-shadow: 3px 2px 1.5px #33333371;
+    width: 160px;
+    text-align: center;
+    border-radius: 8px;
+}
+#github{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+    color: white;
+    position: fixed; 
+    bottom: 0;
+    height: 30px;
+    padding: 2px;
+    padding-top: 10px;
+}
+a:visited{
+    color: white;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    transform: scale(1.2) ;
+    transition: transform 0.3s ease;
+ 
 }
