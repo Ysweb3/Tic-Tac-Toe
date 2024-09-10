@@ -57,22 +57,20 @@ function WinningCombos(array){
         winOverlayLine.classList.remove("hidden");
         winOverlayLine.style.rotate = "90deg";
         winOverlayLine.style.bottom = "355px";
-        winOverlayLine.style.right = "155px";
+        winOverlayLine.style.left = "-155px";
         return true;
     }
     else if((array[0][1] == "X" && array[1][1] == "X" && array[2][1] == "X") || (array[0][1] == "O" && array[1][1] == "O" && array[2][1] == "O")){
         winOverlayLine.classList.remove("hidden");
         winOverlayLine.style.rotate = "90deg";
         winOverlayLine.style.bottom = "355px";
-        winOverlayLine.style.right = "155px";
         return true;
     }
     else if((array[0][2] == "X" && array[1][2] == "X" && array[2][2] == "X") || (array[0][2] == "O" && array[1][2] == "O" && array[2][2] == "O")){
         winOverlayLine.classList.remove("hidden");
         winOverlayLine.style.rotate = "90deg";
         winOverlayLine.style.bottom = "355px";
-        winOverlayLine.style.right = "0px";
-        winOverlayLine.style.left = "0px";
+        winOverlayLine.style.left = "155px";
         return true;
     }
     //Diagonal winning combos
@@ -80,16 +78,12 @@ function WinningCombos(array){
         winOverlayLine.classList.remove("hidden");
         winOverlayLine.style.rotate = "45deg";
         winOverlayLine.style.bottom = "355px";
-        winOverlayLine.style.right = "0px";
-        winOverlayLine.style.left = "0px";
         return true;
     }
     else if((array[0][2] == "X" && array[1][1] == "X" && array[2][0] == "X") || (array[0][2] == "O" && array[1][1] == "O" && array[2][0] == "O")){
         winOverlayLine.classList.remove("hidden");
         winOverlayLine.style.rotate = "-45deg";
         winOverlayLine.style.bottom = "355px"
-        winOverlayLine.style.right = "0px";
-        winOverlayLine.style.left = "0px";
         return true;
     }
 }
@@ -228,6 +222,9 @@ function ReplayGame(){
     DisplayBoard(defaultBoard);
     turnDisplay.textContent = "O's turn";
     winOverlayLine.classList.add("hidden");
+    winOverlayLine.style.bottom = "0px";
+    winOverlayLine.style.right = "0px";
+    winOverlayLine.style.left = "0px";
 
 }
 function ResetGame(){

@@ -99,7 +99,9 @@ h1{
     width: 450px;
     background-color: gray;
     position: relative;
-  
+    bottom: 0px;
+    right: 0px;
+    left: 0px; 
 }
 #turn-display{
     font-size: 35px;
