@@ -21,6 +21,7 @@ function DisplayBoard(board){
         }
     }
 
+
 let defaultBoard = [['','',''],
                     ['','',''],
                     ['','','']]
@@ -138,7 +139,7 @@ function InitializePlayers(){
     player2.score = 0;
     player2.mark = "X";
 }
-let playerTurn = 1;
+let playerTurn = RandomTurn();
 let win = false;
 let gameOver = false;
 let count = 0;
@@ -150,6 +151,7 @@ let p1mark = player1.mark;
 let p2mark = player2.mark;
 let p1score = player1.score;
 let p2score = player2.score;
+turnDisplay.textContent = PlayersTurnForRandomTurns();
 
 function GameLogic(e){
     if (playerTurn == 1 && count <9 && win != true){
@@ -212,7 +214,7 @@ function ReplayGame(){
     defaultBoard = [['','',''],
                     ['','',''],
                     ['','','']]
-    playerTurn = 1;
+    playerTurn = RandomTurn();
     win = false;
     gameOver = false;
     count = 0;
@@ -220,12 +222,11 @@ function ReplayGame(){
     GameBoard = CreateBoard(defaultBoard);
     console.log(defaultBoard)
     DisplayBoard(defaultBoard);
-    turnDisplay.textContent = "O's turn";
+    turnDisplay.textContent = PlayersTurnForRandomTurns();
     winOverlayLine.classList.add("hidden");
     winOverlayLine.style.bottom = "0px";
     winOverlayLine.style.right = "0px";
     winOverlayLine.style.left = "0px";
-
 }
 function ResetGame(){
     ReplayGame()
@@ -234,7 +235,17 @@ function ResetGame(){
     p1ScoreDIsplay.textContent = p1score;
     p2ScoreDIsplay.textContent = p2score;
 }
-
+function RandomTurn(){
+    return Math.round(Math.random() * (2-1)+1);
+}
+function PlayersTurnForRandomTurns(){
+    if (playerTurn === 1){
+        return "O's turn"
+    }
+    else {
+        return "X's turn"
+    }
+}
 resetBtn.addEventListener("click",ResetGame, false);
 
 replayBtn.addEventListener("click",ReplayGame, false);
