@@ -130,7 +130,7 @@ const player1 = new CreatePlayer;
 const player2 = new CreatePlayer;
 
 function InitializePlayers(){
-    player1.name = "Player 1";//take names from user 
+    player1.name = "Player 1"; 
     player1.score = 0;
     player1.mark = "O";
     
@@ -154,31 +154,30 @@ let p2score = player2.score;
 function GameLogic(e){
     if (playerTurn == 1 && count <9 && win != true){
         //O turn
-        turnDisplay.textContent = "X's turn";
+        
         returnArrayIndexOfElement(e.target.id);
         if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
-            indexFilled = true;
+            indexFilled = true;//Do nothing
         }
         else{
             e.target.textContent = p1mark;
-            // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
             GameBoard[arrayIndex1][arrayIndex2] = p1mark;
-            playerTurn = 2;
+            turnDisplay.textContent = "X's turn";
+            playerTurn = 2;//Change player turn
             indexFilled = false
         }
     }
     else if (playerTurn == 2 && count <9 && win != true){
          //X turn
-        turnDisplay.textContent = "O's turn";
         returnArrayIndexOfElement(e.target.id);
         if (GameBoard[arrayIndex1][arrayIndex2] == "X" || GameBoard[arrayIndex1][arrayIndex2] == "O"){
-            indexFilled = true;
+            indexFilled = true;//Do nothing
         }
         else{
             e.target.textContent = p2mark;
-            // console.log("index1 "+arrayIndex1+" index2 "+arrayIndex2)
             GameBoard[arrayIndex1][arrayIndex2] = p2mark;
-            playerTurn = 1;
+            turnDisplay.textContent = "O's turn";
+            playerTurn = 1;//Change player turn
             indexFilled = false
         }
     }
